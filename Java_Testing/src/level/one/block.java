@@ -12,7 +12,6 @@ public class block {
         block blockObj = new block();
         blockObj.raiseDoStuff(35446);
         blockObj.printStuff();
-        blockDirt.getPlaced();
     }
     
     public void printStuff() {
