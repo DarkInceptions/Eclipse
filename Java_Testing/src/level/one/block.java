@@ -12,6 +12,7 @@ public class block {
         block blockObj = new block();
         blockObj.raiseDoStuff(35446);
         blockObj.printStuff();
+        blockDirt.getPlaced();
     }
     
     public void printStuff() {
@@ -21,5 +22,9 @@ public class block {
     
     public void raiseDoStuff(int howMuch){
         doStuff += howMuch;
+    }
+    
+    public static void printMoreStuff() {
+    	System.out.println("More Stuff");
     }
 }
