@@ -19,8 +19,8 @@ public class GUI_Frame extends GUI {
 	}
 
 	public void createFrame() {
-		frame.setTitle("Temperature Conversion");
-		frame.setSize(new Dimension(600,200));
+		frame.setTitle("Temperature Converter");
+		frame.setSize(new Dimension(600, 200));
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
