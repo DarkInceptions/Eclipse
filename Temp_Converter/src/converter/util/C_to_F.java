@@ -1,6 +1,7 @@
 package converter.util;
 
 public class C_to_F {
+	
 	public double cIn;
 	public double fOut;
 	

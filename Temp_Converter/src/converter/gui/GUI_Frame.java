@@ -34,6 +34,5 @@ public class GUI_Frame extends GUI {
 		}
 		
 		frame.getContentPane().add(p.convertButton, BorderLayout.SOUTH);
-		frame.pack();
 	}
 }

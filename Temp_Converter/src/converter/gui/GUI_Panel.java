@@ -2,6 +2,8 @@ package converter.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,28 +19,29 @@ public class GUI_Panel extends GUI {
 	public JPanel rbPanel;
 	public JPanel fcPanel;
 	public JPanel cfPanel;
-	
+
 	public JLabel fLabel;
 	public JLabel cLabel;
 	public JLabel fAns;
 	public JLabel cAns;
-	
+
 	public JTextField fTextField;
 	public JTextField cTextField;
-	
+
 	public JButton convertButton;
-	
+
 	public JRadioButton fcButton;
 	public JRadioButton cfButton;
-	
+
 	public F_to_C fc;
 	public C_to_F cf;
 
 	public double fIn_p;
-	public double fOut_p;
-	public double cIn_p;
 	public double cOut_p;
-	
+
+	public double cIn_p;
+	public double fOut_p;
+
 	public GUI_Panel() {
 		rbPanel = new JPanel(new GridLayout(0, 1));
 		fcPanel = new JPanel(new GridLayout(0, 1));
@@ -53,7 +56,7 @@ public class GUI_Panel extends GUI {
 
 	public void rbPanel() {
 		fcButton = new JRadioButton("Convert Fahrenheit to Celsius");
-		fcButton.setSelected(true);
+		//fcButton.setSelected(true);
 		rbPanel.add(fcButton);
 
 		cfButton = new JRadioButton("Convert Celsius to Fahrenheit");
@@ -63,6 +66,29 @@ public class GUI_Panel extends GUI {
 
 	public void convertButton() {
 		convertButton = new JButton("Convert");
+		
+		if(fcButton.isSelected()) {
+			convertButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					fIn_p = Double.parseDouble(fTextField.getText());
+					cOut_p = ((fIn_p-32)*(5D / 9D));
+					cOut_p = Math.round(cOut_p*100.0)/100.0;
+					fAns.setText(fIn_p +" Degrees Fahrenheit is Equal to " + cOut_p + " Degrees Celsius");
+				}
+			});
+		}
+		if(cfButton.isSelected()) {
+			convertButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					cIn_p = Double.parseDouble(cTextField.getText());
+					fOut_p = ((cIn_p * 9D/5D) + 32);
+					fOut_p = Math.round(fOut_p*100.0)/100.0;
+					cAns.setText(cIn_p +" Degrees Celsius is Equal to " + fOut_p + " Degrees Fahrenheit");
+				}
+			});
+		}
 		rbPanel.add(convertButton);
 	}
 
@@ -72,13 +98,13 @@ public class GUI_Panel extends GUI {
 		fcPanel.add(fLabel);
 
 		fTextField = new JTextField();
-		fTextField.setPreferredSize(new Dimension(100, 30));
+		fTextField.setPreferredSize(new Dimension(400, 15));
 		fcPanel.add(fTextField);
-		
-		fAns = new JLabel(fIn_p +" Degrees Fahrenheit is Equal to " + cOut_p + " Degrees Celsius");
+
+		fAns = new JLabel(" ");
 		fcPanel.add(fAns);
 	}
-	
+
 	public void cfPanel() {
 		cLabel = new JLabel("Enter Degrees Celsius:");
 		cfPanel.add(cLabel);
@@ -86,8 +112,8 @@ public class GUI_Panel extends GUI {
 		cTextField = new JTextField();
 		cTextField.setPreferredSize(new Dimension(100, 30));
 		cfPanel.add(cTextField);
-		
-		cAns = new JLabel(cIn_p +" Degrees Celsius is Equal to " + fOut_p + " Degrees Fahrenheit");
+
+		cAns = new JLabel(" ");
 		cfPanel.add(cAns);
 	}
 }
