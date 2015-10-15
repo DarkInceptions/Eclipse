@@ -69,7 +69,7 @@ public class GUI_Panel extends GUI {
 		
 		rbPanel.add(fcButton);
 		rbPanel.add(cfButton);
-
+		
 		if(fcButton.isSelected()) {
 			fcButton.addActionListener(new ActionListener() {
 				@Override
