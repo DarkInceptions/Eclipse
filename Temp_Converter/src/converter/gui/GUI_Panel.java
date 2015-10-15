@@ -18,16 +18,12 @@ import converter.util.F_to_C;
 public class GUI_Panel extends GUI {
 
 	public JPanel rbPanel;
-	public JPanel fcPanel;
-	public JPanel cfPanel;
+	public JPanel panel;
 
-	public JLabel fLabel;
-	public JLabel cLabel;
-	public JLabel fAns;
-	public JLabel cAns;
+	public JLabel Label;
+	public JLabel Ans;
 
-	public JTextField fTextField;
-	public JTextField cTextField;
+	public JTextField TextField;
 
 	public JButton convertButton;
 	
@@ -47,17 +43,25 @@ public class GUI_Panel extends GUI {
 
 	public GUI_Panel() {
 		rbPanel = new JPanel(new GridLayout(0, 1));
-		fcPanel = new JPanel(new GridLayout(0, 1));
-		cfPanel = new JPanel(new GridLayout(0, 1));
+		panel = new JPanel(new GridLayout(0, 1));
+		
+		fcButton = new JRadioButton("Convert Fahrenheit to Celsius");
+		cfButton = new JRadioButton("Convert Celsius to Fahrenheit");
+		
+		Label = new JLabel("");
+		Ans = new JLabel("");
+		
+		TextField = new JTextField();
+		
+		rbGroup = new ButtonGroup();
+		
 		fc = new F_to_C();
 		cf = new C_to_F();
+		
 		fIn_p = 0;
 		fOut_p = 0;
 		cIn_p = 0;
 		cOut_p = 0;
-		fcButton = new JRadioButton("Convert Fahrenheit to Celsius");
-		cfButton = new JRadioButton("Convert Celsius to Fahrenheit");
-		rbGroup = new ButtonGroup();
 
 		fcButton.setSelected(true);
 		//cfButton.setSelected(true);
@@ -69,34 +73,6 @@ public class GUI_Panel extends GUI {
 		
 		rbPanel.add(fcButton);
 		rbPanel.add(cfButton);
-		
-		if(fcButton.isSelected()) {
-			fcButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					cfButton.setSelected(false);
-					fcButton.setSelected(true);
-					fAns.setText(null);
-					cAns.setText(null);
-					fTextField.setText(null);
-					cTextField.setText(null);
-				}
-			});
-		}
-
-		if(cfButton.isSelected()) {
-			cfButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					fcButton.setSelected(false);
-					cfButton.setSelected(true);
-					fAns.setText(null);
-					cAns.setText(null);
-					fTextField.setText(null);
-					cTextField.setText(null);
-				}
-			});
-		}
 	}
 
 	public void convertButton() {
@@ -106,10 +82,10 @@ public class GUI_Panel extends GUI {
 			convertButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					fIn_p = Double.parseDouble(fTextField.getText());
+					fIn_p = Double.parseDouble(TextField.getText());
 					cOut_p = ((fIn_p-32)*(5D / 9D));
 					cOut_p = Math.round(cOut_p*100.0)/100.0;
-					fAns.setText(fIn_p +" Degrees Fahrenheit is Equal to " + cOut_p + " Degrees Celsius");
+					Ans.setText(fIn_p +" Degrees Fahrenheit is Equal to " + cOut_p + " Degrees Celsius");
 				}
 			});
 		}
@@ -117,38 +93,47 @@ public class GUI_Panel extends GUI {
 			convertButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					cIn_p = Double.parseDouble(cTextField.getText());
+					cIn_p = Double.parseDouble(TextField.getText());
 					fOut_p = ((cIn_p * 9D/5D) + 32);
 					fOut_p = Math.round(fOut_p*100.0)/100.0;
-					cAns.setText(cIn_p +" Degrees Celsius is Equal to " + fOut_p + " Degrees Fahrenheit");
+					Ans.setText(cIn_p +" Degrees Celsius is Equal to " + fOut_p + " Degrees Fahrenheit");
 				}
 			});
 		}
 		rbPanel.add(convertButton);
 	}
+	
+	public void createPanel() {
 
+		if(fcButton.isSelected()) {
+			Label.setText("Enter Degrees Fahrenheit:");
 
-	public void fcPanel() {
-		fLabel = new JLabel("Enter Degrees Fahrenheit:");
-		fcPanel.add(fLabel);
+			fcButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Ans.setText("");
+					cfButton.setSelected(false);
+					fcButton.setSelected(true);
+				}
+			});
+		}
 
-		fTextField = new JTextField();
-		fTextField.setPreferredSize(new Dimension(400, 15));
-		fcPanel.add(fTextField);
+		if(cfButton.isSelected()) {
+			Label.setText("Enter Degrees Celsius:");
 
-		fAns = new JLabel(" ");
-		fcPanel.add(fAns);
-	}
-
-	public void cfPanel() {
-		cLabel = new JLabel("Enter Degrees Celsius:");
-		cfPanel.add(cLabel);
-
-		cTextField = new JTextField();
-		cTextField.setPreferredSize(new Dimension(100, 30));
-		cfPanel.add(cTextField);
-
-		cAns = new JLabel(" ");
-		cfPanel.add(cAns);
+			cfButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Ans.setText("");
+					fcButton.setSelected(false);
+					cfButton.setSelected(true);
+				}
+			});
+		}
+		
+		panel.add(Label);
+		TextField.setPreferredSize(new Dimension(400, 10));
+		panel.add(TextField);
+		panel.add(Ans);
 	}
 }
