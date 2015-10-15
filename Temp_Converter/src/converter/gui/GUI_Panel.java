@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -29,6 +30,8 @@ public class GUI_Panel extends GUI {
 	public JTextField cTextField;
 
 	public JButton convertButton;
+	
+	public ButtonGroup rbGroup;
 
 	public JRadioButton fcButton;
 	public JRadioButton cfButton;
@@ -52,21 +55,53 @@ public class GUI_Panel extends GUI {
 		fOut_p = 0;
 		cIn_p = 0;
 		cOut_p = 0;
+		fcButton = new JRadioButton("Convert Fahrenheit to Celsius");
+		cfButton = new JRadioButton("Convert Celsius to Fahrenheit");
+		rbGroup = new ButtonGroup();
+		
+		fcButton.setSelected(true);
+		//cfButton.setSelected(true);
 	}
 
 	public void rbPanel() {
-		fcButton = new JRadioButton("Convert Fahrenheit to Celsius");
-		//fcButton.setSelected(true);
+		rbGroup.add(fcButton);
+		rbGroup.add(cfButton);
+		
 		rbPanel.add(fcButton);
-
-		cfButton = new JRadioButton("Convert Celsius to Fahrenheit");
-		//cfButton.setSelected(true);
 		rbPanel.add(cfButton);
+
+		if(fcButton.isSelected()) {
+			fcButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					cfButton.setSelected(false);
+					fcButton.setSelected(true);
+					fAns.setText(null);
+					cAns.setText(null);
+					fTextField.setText(null);
+					cTextField.setText(null);
+				}
+			});
+		}
+
+		if(cfButton.isSelected()) {
+			cfButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					fcButton.setSelected(false);
+					cfButton.setSelected(true);
+					fAns.setText(null);
+					cAns.setText(null);
+					fTextField.setText(null);
+					cTextField.setText(null);
+				}
+			});
+		}
 	}
 
 	public void convertButton() {
 		convertButton = new JButton("Convert");
-		
+
 		if(fcButton.isSelected()) {
 			convertButton.addActionListener(new ActionListener() {
 				@Override

@@ -25,14 +25,17 @@ public class GUI_Frame extends GUI {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(p.rbPanel, BorderLayout.WEST);
-		
+		frame.getContentPane().add(p.convertButton, BorderLayout.SOUTH);
+	}
+
+	public void changePane() {
 		if (p.fcButton.isSelected()) {
+			frame.getContentPane().remove(p.cfPanel);
 			frame.getContentPane().add(p.fcPanel, BorderLayout.EAST);
 		}
 		if (p.cfButton.isSelected()) {
+			frame.getContentPane().remove(p.fcPanel);
 			frame.getContentPane().add(p.cfPanel, BorderLayout.CENTER);
 		}
-		
-		frame.getContentPane().add(p.convertButton, BorderLayout.SOUTH);
 	}
 }
