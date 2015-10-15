@@ -26,9 +26,6 @@ public class GUI_Frame extends GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(p.rbPanel, BorderLayout.WEST);
 		frame.getContentPane().add(p.convertButton, BorderLayout.SOUTH);
-	}
-
-	public void changePane() {
 		if (p.fcButton.isSelected()) {
 			frame.getContentPane().remove(p.cfPanel);
 			frame.getContentPane().add(p.fcPanel, BorderLayout.EAST);

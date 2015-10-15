@@ -58,7 +58,7 @@ public class GUI_Panel extends GUI {
 		fcButton = new JRadioButton("Convert Fahrenheit to Celsius");
 		cfButton = new JRadioButton("Convert Celsius to Fahrenheit");
 		rbGroup = new ButtonGroup();
-		
+
 		fcButton.setSelected(true);
 		//cfButton.setSelected(true);
 	}

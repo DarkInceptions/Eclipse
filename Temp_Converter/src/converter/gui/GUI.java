@@ -8,8 +8,7 @@ public class GUI {
 	}
 
 	public static void main(String[] args) {
-		f.frame.setVisible(true);
 		f.createFrame();
-		f.changePane();
+		f.frame.setVisible(true);
 	}
 }
