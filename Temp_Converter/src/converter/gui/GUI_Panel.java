@@ -34,12 +34,21 @@ public class GUI_Panel extends GUI {
 	public F_to_C fc;
 	public C_to_F cf;
 
+	public double fIn_p;
+	public double fOut_p;
+	public double cIn_p;
+	public double cOut_p;
+	
 	public GUI_Panel() {
 		rbPanel = new JPanel(new GridLayout(0, 1));
 		fcPanel = new JPanel(new GridLayout(0, 1));
 		cfPanel = new JPanel(new GridLayout(0, 1));
 		fc = new F_to_C();
 		cf = new C_to_F();
+		fIn_p = 0;
+		fOut_p = 0;
+		cIn_p = 0;
+		cOut_p = 0;
 	}
 
 	public void rbPanel() {
@@ -66,7 +75,7 @@ public class GUI_Panel extends GUI {
 		fTextField.setPreferredSize(new Dimension(100, 30));
 		fcPanel.add(fTextField);
 		
-		fAns = new JLabel(fc.fIn +" Degrees Fahrenheit is Equal to " + fc.cOut + " Degrees Celsius");
+		fAns = new JLabel(fIn_p +" Degrees Fahrenheit is Equal to " + cOut_p + " Degrees Celsius");
 		fcPanel.add(fAns);
 	}
 	
@@ -78,7 +87,7 @@ public class GUI_Panel extends GUI {
 		cTextField.setPreferredSize(new Dimension(100, 30));
 		cfPanel.add(cTextField);
 		
-		cAns = new JLabel(cf.cIn +" Degrees Celsius is Equal to " + cf.fOut + " Degrees Fahrenheit");
+		cAns = new JLabel(cIn_p +" Degrees Celsius is Equal to " + fOut_p + " Degrees Fahrenheit");
 		cfPanel.add(cAns);
 	}
 }
