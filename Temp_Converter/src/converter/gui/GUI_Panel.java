@@ -111,7 +111,8 @@ public class GUI_Panel extends GUI {
 			fcButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Ans.setText("");
+					Ans.setText(null);
+					TextField.setText(null);
 					cfButton.setSelected(false);
 					fcButton.setSelected(true);
 				}
@@ -124,7 +125,8 @@ public class GUI_Panel extends GUI {
 			cfButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Ans.setText("");
+					Ans.setText(null);
+					TextField.setText(null);
 					fcButton.setSelected(false);
 					cfButton.setSelected(true);
 				}
