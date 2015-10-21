@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class GUI {
+public class GUI implements Runnable {
 
 	public JPanel rbPanel;
 	public JPanel panel;
@@ -24,7 +24,8 @@ public class GUI {
 
 	public JTextField TextField;
 
-	public JButton convertButton;
+	public JButton convertF;
+	public JButton convertC;
 
 	public ButtonGroup rbGroup;
 
@@ -55,12 +56,19 @@ public class GUI {
 		//cfButton.setSelected(true);
 	}
 
-	public static void main(String[] args) {
+	public void run() {
 		GUI g = new GUI();
 		JFrame frame = new JFrame();
 
-		g.rbPanel();	
-		g.convertButton();
+		g.rbPanel();
+		if(g.fcButton.isSelected()) {
+			g.convertF();
+			frame.getContentPane().add(g.convertF, BorderLayout.SOUTH);
+		}
+		if(g.cfButton.isSelected()) {
+			g.convertC();
+			frame.getContentPane().add(g.convertC, BorderLayout.SOUTH);
+		}
 		g.createPanel();
 
 		frame.setTitle("Temperature Converter");
@@ -69,7 +77,7 @@ public class GUI {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(g.rbPanel, BorderLayout.WEST);
-		frame.getContentPane().add(g.convertButton, BorderLayout.SOUTH);
+
 		frame.getContentPane().add(g.panel, BorderLayout.EAST);
 		frame.setVisible(true);
 
@@ -77,9 +85,9 @@ public class GUI {
 
 	public void rbPanel() {
 		rbPanel = new JPanel(new GridLayout(0, 1));
-		
+
 		rbGroup = new ButtonGroup();
-		
+
 		rbGroup.add(fcButton);
 		rbGroup.add(cfButton);
 
@@ -87,12 +95,14 @@ public class GUI {
 		rbPanel.add(cfButton);
 	}
 
-	public void convertButton() {
-		convertButton = new JButton("Convert");
+	public void convertF() {
+		convertF = new JButton("Convert");
+
+		Label.setText("Enter Degrees Fahrenheit:");
 
 		if(fcButton.isSelected()) {
-			
-			convertButton.addActionListener(new ActionListener() {
+
+			convertF.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					fIn_p = Double.parseDouble(TextField.getText());
@@ -102,9 +112,16 @@ public class GUI {
 				}
 			});
 		}
+	}
+
+	public void convertC() {
+		convertC = new JButton("Convert");
+
+		Label.setText("Enter Degrees Celsius:");
+
 		if(cfButton.isSelected()) {
 
-			convertButton.addActionListener(new ActionListener() {
+			convertC.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					cIn_p = Double.parseDouble(TextField.getText());
