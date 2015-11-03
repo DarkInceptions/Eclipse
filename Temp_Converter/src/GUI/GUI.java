@@ -49,7 +49,7 @@ public class GUI {
 	}
 
 	public void createFrame() {
-		frame.setSize(new Dimension(400, 200));
+		frame.setSize(new Dimension(450, 200));
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setTitle("Temperature Converter");
