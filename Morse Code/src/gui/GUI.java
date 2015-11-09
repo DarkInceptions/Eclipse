@@ -48,7 +48,7 @@ public class GUI {
 	String v0 = "0 -----";
 
 	ButtonGroup group;
-	
+
 	JButton convert;
 
 	JRadioButton mt;
@@ -59,20 +59,33 @@ public class GUI {
 	JPanel codec_main;
 	JPanel codec_letters;
 	JPanel codec_numbers;
-	JPanel main;
 	JPanel button_panel;
+	JPanel main;
+	JPanel input_panel;
+	JPanel output_panel;
+
+	JTextArea output_text;
+	JTextArea input_text;
 
 	public GUI() {
 		frame = new JFrame();
-		convert = new JButton("Convert");
+
 		codec_main = new JPanel();
 		codec_letters = new JPanel();
 		codec_numbers = new JPanel();
+
+		button_panel = new JPanel();
 		group = new ButtonGroup();
 		mt = new JRadioButton("Morse Code to Text");
 		tm = new JRadioButton("Text to Morse Code");
-		main = new JPanel();
-		button_panel = new JPanel();
+
+		main = new JPanel();	
+		input_panel = new JPanel();
+		input_text = new JTextArea();
+		output_panel = new JPanel();
+		output_text = new JTextArea();
+
+		convert = new JButton("Convert");
 	}
 
 	public static void main(String[] args) {
@@ -81,8 +94,8 @@ public class GUI {
 		g.createCodecMain();
 		g.createCodecLetters();
 		g.createCodecNumbers();
-		g.createMain();
 		g.createRadioButtons();
+		g.createMain();
 		g.createInput();
 		g.createOutput();
 		g.createConvert();
@@ -90,7 +103,7 @@ public class GUI {
 
 	public void createFrame() {
 		frame.setTitle("Morse Code");
-		frame.setSize(new Dimension(600,800));
+		frame.setSize(new Dimension(700,900));
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -230,23 +243,17 @@ public class GUI {
 		codec_numbers.add(l0);
 	}
 
-	public void createMain() {
-		main.setLayout(new GridLayout(2,0));
-		
-		frame.getContentPane().add(main, BorderLayout.EAST);
-	}
-
 	public void createRadioButtons() {
 		group.add(mt);
 		group.add(tm);
-		
+
 		mt.setFont(new Font("Arial", Font.PLAIN, 24));
 		tm.setFont(new Font("Arial", Font.PLAIN, 24));
-		
+
 		button_panel.setLayout(new GridLayout(1,0));
 		button_panel.add(mt);
 		button_panel.add(tm);
-		
+
 		frame.getContentPane().add(button_panel, BorderLayout.NORTH);
 
 		mt.addActionListener(new ActionListener() {
@@ -262,17 +269,42 @@ public class GUI {
 		});
 	}
 
-	public void createInput() {
+	public void createMain() {
+		main.setLayout(new GridLayout(2,0));
 
+		main.add(input_panel);
+		main.add(output_panel);
+
+		frame.getContentPane().add(main, BorderLayout.EAST);
+	}
+
+	public void createInput() {
+		input_text.setEditable(true);
+		input_text.setPreferredSize(new Dimension(300, 200));
+		input_text.setLineWrap(true);
+		input_text.setWrapStyleWord(true);
+
+		JScrollPane input_scroll = new JScrollPane(input_text);
+
+		input_panel.add(input_scroll);
+		input_panel.add(input_text);
 	}
 
 	public void createOutput() {
+		output_text.setEditable(false);
+		output_text.setPreferredSize(new Dimension(300, 200));
+		output_text.setLineWrap(true);
+		output_text.setWrapStyleWord(true);
 
+		JScrollPane output_scroll = new JScrollPane(output_text);
+
+		output_panel.add(output_scroll);
+		output_panel.add(output_text);
 	}
-	
+
 	public void createConvert() {
 		frame.getContentPane().add(convert, BorderLayout.SOUTH);
-		
+
 		convert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(mt.isSelected()) {
