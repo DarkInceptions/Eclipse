@@ -90,20 +90,20 @@ public class GUI {
 
 	public static void main(String[] args) {
 		GUI g = new GUI();
-		g.createFrame();
 		g.createCodecMain();
 		g.createCodecLetters();
 		g.createCodecNumbers();
 		g.createRadioButtons();
-		g.createMain();
+		g.createConvert();
 		g.createInput();
 		g.createOutput();
-		g.createConvert();
+		g.createMain();
+		g.createFrame();
 	}
 
 	public void createFrame() {
 		frame.setTitle("Morse Code");
-		frame.setSize(new Dimension(700,900));
+		frame.setSize(new Dimension(700,800));
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -258,13 +258,15 @@ public class GUI {
 
 		mt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//
+				input_text.setText(null);
+				output_text.setText(null);
 			}
 		});
 
 		tm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//
+				input_text.setText(null);
+				output_text.setText(null);
 			}
 		});
 	}
@@ -308,10 +310,10 @@ public class GUI {
 		convert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(mt.isSelected()) {
-					//
+					input_text.setText(null);
 				}
 				if(tm.isSelected()) {
-					//
+					input_text.setText(null);
 				}
 			}
 		});
